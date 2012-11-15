@@ -110,10 +110,10 @@ public class LARQ
      
     public static void index(Document doc, Node node, String indexContent)
     {
-        Field indexField = new Field(LARQ.fIndex, indexContent, Field.Store.NO, Field.Index.ANALYZED) ;
+        Field indexField = new Field(LARQ.fIndex, indexContent, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES) ;
         doc.add(indexField) ;
 
-        Field indexHashField = new Field(LARQ.fIndexHash, hash(node, indexContent), Field.Store.NO, Field.Index.NOT_ANALYZED) ;
+        Field indexHashField = new Field(LARQ.fIndexHash, hash(node, indexContent), Field.Store.YES, Field.Index.NOT_ANALYZED, Field.TermVector.YES) ;
         doc.add(indexHashField) ;
     }        
      

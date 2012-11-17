@@ -81,12 +81,16 @@ public class IndexBuilderNode extends IndexBuilderBase
     {
         try {
         	if ( avoidDuplicates() ) unindex(node, indexStr);
-            Document doc = new Document() ;
+            Document doc = new Document();
             LARQ.store(doc, node) ;
             LARQ.index(doc, node, indexStr) ;
-            getIndexWriter().addDocument(doc) ;
+            IndexWriter writer = getIndexWriter();
+            writer.addDocument(doc) ;
         } catch (IOException ex)
-        { throw new ARQLuceneException("index", ex) ; }
+        { 
+            System.out.println("Exception thrown while indexing : " + ex.getMessage());
+            throw new ARQLuceneException("index", ex) ; 
+        }
     }
    
     public void index(Node node, Reader indexStream)

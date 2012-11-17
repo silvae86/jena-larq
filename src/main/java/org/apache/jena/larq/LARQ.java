@@ -119,10 +119,10 @@ public class LARQ
      
     public static void index(Document doc, Node node, Reader indexContent)
     {
-        Field indexField = new Field(LARQ.fIndex, indexContent) ;
+        Field indexField = new Field(LARQ.fIndex, indexContent, Field.TermVector.YES);
         doc.add(indexField) ;
 
-        Field indexHashField = new Field(LARQ.fIndexHash, hash(node, indexContent), Field.Store.NO, Field.Index.NOT_ANALYZED) ;
+        Field indexHashField = new Field(LARQ.fIndexHash, hash(node, indexContent), Field.Store.YES, Field.Index.NOT_ANALYZED, Field.TermVector.YES) ;
        	doc.add(indexHashField) ;
     }
 
@@ -203,7 +203,7 @@ public class LARQ
         String datatype = node.getLiteralDatatypeURI() ;
         String lang = node.getLiteralLanguage() ;
 
-        Field f = new Field(LARQ.fLex, lex, Field.Store.YES, Field.Index.NO) ;
+        Field f = new Field(LARQ.fLex, lex, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES) ;
         doc.add(f) ;
         
         if ( lang != null )

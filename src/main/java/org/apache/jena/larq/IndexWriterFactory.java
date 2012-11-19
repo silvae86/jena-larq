@@ -20,7 +20,7 @@ package org.apache.jena.larq;
 
 import java.io.IOException;
 
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.analysis.SimpleAnalyzer;
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
@@ -30,7 +30,7 @@ import org.apache.lucene.store.LockObtainFailedException;
 public class IndexWriterFactory {
 
     public static IndexWriter create(Directory dir) throws CorruptIndexException, LockObtainFailedException, IOException {
-        IndexWriterConfig config = new IndexWriterConfig(LARQ.LUCENE_VERSION, new StandardAnalyzer(LARQ.LUCENE_VERSION)) ;
+        IndexWriterConfig config = new IndexWriterConfig(LARQ.LUCENE_VERSION, new SimpleAnalyzer(LARQ.LUCENE_VERSION)) ;
         config.setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND) ;
         return new IndexWriter(dir, config) ;
     }

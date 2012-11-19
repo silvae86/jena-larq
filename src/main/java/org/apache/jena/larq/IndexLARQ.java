@@ -24,7 +24,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.analysis.SimpleAnalyzer;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.queryParser.QueryParser;
@@ -58,7 +58,7 @@ public class IndexLARQ
     
     public IndexLARQ(IndexReader r)
     { 
-        this(r, new StandardAnalyzer(LARQ.LUCENE_VERSION)) ;
+        this(r, new SimpleAnalyzer(LARQ.LUCENE_VERSION)) ;
     }
         
     public IndexLARQ(IndexReader r, Analyzer a)
@@ -74,7 +74,7 @@ public class IndexLARQ
     
     public IndexLARQ(IndexWriter w)
     {
-        this (w, new StandardAnalyzer(LARQ.LUCENE_VERSION)) ;
+        this (w, new SimpleAnalyzer(LARQ.LUCENE_VERSION)) ;
     }
     
     public IndexLARQ(IndexWriter w, Analyzer a)
